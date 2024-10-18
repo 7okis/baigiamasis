@@ -122,3 +122,25 @@ lightbox.addEventListener('click', (e) => {
     }
 });
 
+
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show'); // Show or hide the mobile menu
+});
+
+const heroImage = document.getElementById('hero-image');
+
+// Define the original and hover image URLs
+const originalImage = 'Pictures/Hero-img2.png';
+const hoverImage = 'Pictures/Hero-img-sad.png';
+
+// Add event listeners for mouseover and mouseout
+heroImage.addEventListener('mouseover', () => {
+    heroImage.src = hoverImage; // Switch to hover image
+});
+
+heroImage.addEventListener('mouseout', () => {
+    heroImage.src = originalImage; // Switch back to original image
+});

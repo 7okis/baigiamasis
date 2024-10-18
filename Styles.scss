@@ -25,9 +25,12 @@ body {
 
 /* Header Styles */
 header {
-    background-color: #ffffff;
+    background-color: #EAEBFF;
     border-bottom: 1px solid #e0e0e0;
     padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header .logo {
@@ -39,7 +42,7 @@ header .logo {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 64px;
     margin: 0;
     padding: 0;
 }
@@ -48,7 +51,34 @@ header nav ul li a {
     text-decoration: none;
     color: #222222;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
+    transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+header nav ul li a:hover {
+    color: #4f5aff;  /* Lighter color on hover */
+}
+
+.hamburger, .nav-menu {
+    display: none; /* Hidden by default on larger screens */
+}
+
+.hamburger {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.nav-menu {
+    flex-direction: column;
+    gap: 32px;
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 /* Intro Section */
@@ -94,6 +124,8 @@ header nav ul li a {
     display: inline-block;          /* Treat as inline-block for anchor */
     text-decoration: none;          /* Remove underline for links */
     transition: all 0.3s ease;      /* Smooth transition for hover effect */
+    margin-bottom: 8px;
+    max-width: 500px;
 }
 
 /* Hover effect */
@@ -105,17 +137,19 @@ header nav ul li a {
 
 .intro-image img {
     max-width: 100%;
-    border-radius: 10px;
+    border-radius: 0px;
+    max-width: 500px;
 }
 
 /* Skills Section */
 #skills {
-    background-color: #2E3192;
+    background: linear-gradient(135deg, #2E3192, #323FA1);  /* Initial gradient */
     padding: 50px 0;
     display: flex;
     flex-direction: column;
     align-items: center;  /* Center the content inside the skills section */
 }
+
 
 .skills-container {
     display: grid;
@@ -138,10 +172,17 @@ header nav ul li a {
     padding: 16px;
     border-radius: 20px;
     max-width: 550px;  /* Set max-width to prevent stretching */
+    min-width: 250px;
     width: 100%;               /* Ensure cards are 100% inside the container */
     margin-bottom: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for the cards */
     text-align: left;          /* Align text to the left */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.skill-card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase the shadow on hover */
 }
 
 .skill-card h3 {
@@ -203,25 +244,12 @@ header nav ul li a {
     width: 100%;
     max-width: 550px;  /* Limit the width to 550px to match skill cards */
     border-radius: 10px;
+    // transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
-
-/* Media Query for responsiveness */
-@media (max-width: 768px) {
-    .skills-container,
-    .works-container {
-        grid-template-columns: 1fr; /* Make both skills and works single-column on mobile */
-    }
-
-    #intro {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .intro-text, .intro-image {
-        max-width: 100%;
-        margin-bottom: 20px;
-    }
-}
+// .work-item:hover {
+//     transform: scale(1.05); /* Slightly enlarge the card on hover */
+//     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase the shadow on hover */
+// }
 
 /* Contact Section */
 #contact {
@@ -229,10 +257,11 @@ header nav ul li a {
     padding: 50px 0;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start; /* Align the form and contact info at the top */
 }
 
 .contact-form {
-    width: 45%;
+    width: 45%; /* Same width as contact info for balance */
 }
 
 .contact-form form {
@@ -252,7 +281,7 @@ header nav ul li a {
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     font-size: 16px;
-    width: 100%;
+    width: 100%; /* Ensure input fields take full width */
 }
 
 .contact-form button {
@@ -264,10 +293,11 @@ header nav ul li a {
     font-weight: 700;
     cursor: pointer;
     border-radius: 100px;
+    width: 100%; /* Ensure the button takes full width like the inputs */
 }
 
 .contact-info {
-    width: 45%;
+    width: 45%; /* Align contact info with the form width */
     text-align: left;
 }
 
@@ -281,21 +311,12 @@ header nav ul li a {
     font-size: 16px;
     margin-bottom: 20px;
     color: white;
-}
-.contact-info button {
-    background-color: #2E3192;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    border-radius: 5px;
+    max-width: 450px;
 }
 
 /* Footer Section */
 footer {
-    background-color: #222222;
+    background-color: #0A0D68;
     color: #ffffff;
     padding: 20px 0;
 }
@@ -314,7 +335,7 @@ footer .footer-logo {
 footer nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 40px;
     margin: 0;
     padding: 0;
 }
@@ -323,7 +344,7 @@ footer nav ul li a {
     text-decoration: none;
     color: #ffffff;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 /* Lightbox styles */
@@ -368,4 +389,94 @@ footer nav ul li a {
     width: 100%;
     cursor: pointer;
     border-radius: 10px;
+}
+@media (max-width: 1111px) {
+    .intro-image {
+        order: -1; /* Bring the contact info above the form */
+        width: 100%;
+        align-items: center;
+    }
+}
+/* Media Query for Mobile Screens (375px and up) */
+@media (max-width: 768px) {
+    .skills-container,
+    .works-container {
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
+        justify-items: center; /* Center each item horizontally */
+        text-align: center; /* Center text inside items */
+        // gap: 20px;
+    }
+    .skills-container {
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
+        gap: 20px; /* Ensure enough space between cards */
+        justify-items: center; /* Center each item horizontally */
+    }
+
+    #intro {
+        flex-direction: column; /* Stack text and image vertically */
+        text-align: left; /* Left-align the text */
+        align-items: flex-start; /* Ensure text aligns left */
+    }
+
+    .intro-text, .intro-image {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .scroll-button {
+        width: 100%; /* Make button full-width on mobile */
+    }
+
+    .intro-image img {
+        margin: 20px 0; /* Add space around the image */
+    }
+
+    /* Show hamburger menu and hide the regular nav */
+    .hamburger {
+        display: block;
+        color: #222222;
+    }
+
+    nav ul {
+        display: none !important; /* Ensure normal menu is hidden */
+    }
+
+    /* Open the mobile menu when the hamburger is clicked */
+    .nav-menu.show {
+        display: flex;
+    }
+
+    #contact {
+        flex-direction: column; /* Stack the form and contact info vertically */
+        align-items: center;
+    }
+
+    .contact-form, .contact-info {
+        width: 100%; /* Make both sections full-width on mobile */
+    }
+
+    .contact-info {
+        text-align: center; /* Center text on mobile */
+        order: -1; /* Bring the contact info above the form */
+    }
+}
+
+/* Media Query for smallest screen (375px width) */
+@media (max-width: 375px) {
+    .scroll-button {
+        font-size: 14px; /* Adjust button size for smaller screens */
+        padding: 10px;
+    }
+
+    .intro-text h1 {
+        font-size: 32px; /* Adjust header size for small screens */
+    }
+
+    .skill-card h3 {
+        font-size: 18px;
+    }
+
+    #skills h2, #works h2 {
+        font-size: 24px;
+    }
 }
