@@ -416,13 +416,14 @@ footer nav ul li a {
 .lightbox-prev, .lightbox-next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 50%; /* Vertically centered */
     padding: 16px;
     color: #fff;
     font-size: 24px;
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
     transition: 0.3s;
+    transform: translateY(-50%); /* Adjust to ensure proper centering even with padding */
 }
 
 .lightbox-prev:hover, .lightbox-next:hover {
@@ -481,6 +482,12 @@ footer nav ul li a {
     //     max-width: 100%; /* Ensure cards take full width on mobile */
     //     margin: 0 auto 20px; /* Add space around the card for better mobile layout */
     // }
+
+    .lightbox-prev, .lightbox-next {
+        top: 20%; /* Adjust arrow position for better layout in mobile view */
+        transform: none; /* Remove translateY for better positioning */
+        font-size: 18px; /* Adjust font size for smaller screens */
+    }
 
     #intro {
         flex-direction: column; /* Stack text and image vertically */
