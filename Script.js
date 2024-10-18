@@ -7,140 +7,99 @@ document.addEventListener('DOMContentLoaded', () => {
         skill.style.width = level;
     });
 
-    // Expandable images in My Works section
-    const workImages = document.querySelectorAll('#my-works img');
+    // Expandable images in My Works section with lightbox
+    const workImages = document.querySelectorAll('.clickable-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.querySelector('.close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    
+    let currentIndex = 0;
 
-    workImages.forEach(image => {
-        image.addEventListener('click', () => {
-            // Create overlay
-            const overlay = document.createElement('div');
-            overlay.id = 'overlay';
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
-            overlay.style.display = 'flex';
-            overlay.style.justifyContent = 'center';
-            overlay.style.alignItems = 'center';
-            overlay.style.zIndex = '1000';
+    // Function to open lightbox
+    function openLightbox(index) {
+        lightbox.style.display = 'flex';  // Display lightbox
+        currentIndex = index;
+        updateLightboxImage(currentIndex);
+    }
 
-            // Create enlarged image
-            const enlargedImg = document.createElement('img');
-            enlargedImg.src = image.src;
-            enlargedImg.style.maxWidth = '80%';
-            enlargedImg.style.maxHeight = '80%';
-            enlargedImg.style.border = '5px solid #fff';
-            enlargedImg.style.borderRadius = '10px';
+    // Function to update the lightbox image
+    function updateLightboxImage(index) {
+        const imageSrc = workImages[index].getAttribute('data-full');
+        lightboxImg.src = imageSrc;
+    }
 
-            // Append image to overlay
-            overlay.appendChild(enlargedImg);
+    // Add event listeners to clickable images
+    workImages.forEach((image, index) => {
+        image.addEventListener('click', () => openLightbox(index));
+    });
 
-            // Append overlay to body
-            document.body.appendChild(overlay);
+    // Add event listeners to lightbox controls (Next, Previous, Close)
+    closeBtn.addEventListener('click', () => {
+        lightbox.style.display = 'none';  // Close the lightbox
+    });
 
-            // Remove overlay on click
-            overlay.addEventListener('click', () => {
-                document.body.removeChild(overlay);
-            });
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + workImages.length) % workImages.length;
+        updateLightboxImage(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % workImages.length;
+        updateLightboxImage(currentIndex);
+    });
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+        }
+    });
+
+    // Scroll button smooth scrolling
+    document.querySelector('.scroll-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector('#contact');
+        window.scrollTo({
+            top: target.offsetTop,
+            behavior: 'smooth'
         });
     });
-});
 
-// Add event listener to the scroll button
-document.querySelector('.scroll-button').addEventListener('click', function (e) {
-    e.preventDefault();  // Prevent default anchor link behavior
+    // Hamburger menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
-    // The target element we want to scroll to
-    const target = document.querySelector('#contact');
-
-    // Use window.scrollTo with smooth behavior
-    window.scrollTo({
-        top: target.offsetTop,   // Scroll to the top of the target section
-        behavior: 'smooth'       // Set to smooth scrolling
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
     });
 
-    // If you want to make the scroll slower, use a custom scrolling function below:
-    slowScrollTo(target, 2000);  // Slow scroll to the target element (2 seconds)
-});
+    // Hero image hover effect
+    const heroImage = document.getElementById('hero-image');
+    const originalImage = 'Pictures/Hero-img2.png';
+    const hoverImage = 'Pictures/Hero-img-sad.png';
 
-// Function to slow down the scroll speed
-function slowScrollTo(element, duration) {
-    const targetPosition = element.getBoundingClientRect().top;  // Position of target
-    const startPosition = window.pageYOffset;  // Current scroll position
-    const startTime = performance.now();  // Start time of scroll
+    heroImage.addEventListener('mouseover', () => {
+        heroImage.src = hoverImage;
+    });
 
-    function scrollAnimation(currentTime) {
-        const timeElapsed = currentTime - startTime;
-        const scrollDistance = easeInOutQuad(timeElapsed, startPosition, targetPosition, duration);
-
-        window.scrollTo(0, scrollDistance);
-
-        if (timeElapsed < duration) {
-            requestAnimationFrame(scrollAnimation);  // Continue animation
-        }
-    }
-
-    requestAnimationFrame(scrollAnimation);
-}
-
-// Ease in-out function for smooth scrolling effect
-function easeInOutQuad(t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return c / 2 * t * t + b;
-    t--;
-    return -c / 2 * (t * (t - 2) - 1) + b;
-}
-
-// Select all images with the 'clickable-image' class
-const images = document.querySelectorAll('.clickable-image');
-
-// Lightbox elements
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.querySelector('.close');
-
-// Function to open the lightbox with the full-size image
-images.forEach(image => {
-    image.addEventListener('click', () => {
-        lightbox.style.display = 'block';          // Show the lightbox
-        const fullSizeImg = image.getAttribute('data-full');  // Get full-size image URL
-        lightboxImg.src = fullSizeImg;             // Set the lightbox image to the full-size image
+    heroImage.addEventListener('mouseout', () => {
+        heroImage.src = originalImage;
     });
 });
 
-// Function to close the lightbox when clicking the close button
-closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-});
+document.querySelectorAll('header nav ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-// Close the lightbox if the user clicks anywhere outside the image
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-    }
-});
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
 
-
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show'); // Show or hide the mobile menu
-});
-
-const heroImage = document.getElementById('hero-image');
-
-// Define the original and hover image URLs
-const originalImage = 'Pictures/Hero-img2.png';
-const hoverImage = 'Pictures/Hero-img-sad.png';
-
-// Add event listeners for mouseover and mouseout
-heroImage.addEventListener('mouseover', () => {
-    heroImage.src = hoverImage; // Switch to hover image
-});
-
-heroImage.addEventListener('mouseout', () => {
-    heroImage.src = originalImage; // Switch back to original image
+        // Scroll to the target element with smooth scrolling
+        window.scrollTo({
+            top: targetElement.offsetTop - 50, // Adjust -50 for the header height if it's sticky
+            behavior: 'smooth'
+        });
+    });
 });

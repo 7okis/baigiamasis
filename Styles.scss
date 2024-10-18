@@ -25,12 +25,21 @@ body {
 
 /* Header Styles */
 header {
-    background-color: #EAEBFF;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 20px 0;
+    background-color: rgba(226, 234, 255, 0.7); /* Transparent white */
+    backdrop-filter: blur(10px); /* Apply blur to the background */
+    border-bottom: 1px solid rgba(224, 224, 224, 0.5); /* Light border */
+    padding: 8px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 56px;
+    width: auto;
+    margin: 0 auto;
+    border-radius: 0px;
+    margin-top: 0px;
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Stick to the top of the page */
+    z-index: 1000; /* Ensure it's on top of other content */
 }
 
 header .logo {
@@ -86,11 +95,11 @@ header nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 50px 0;
+    padding: 50px 20px;
 }
 
 .intro-text {
-    max-width: 50%;
+    max-width: 500px;
 }
 
 .intro-text h1 {
@@ -115,7 +124,7 @@ header nav ul li a:hover {
     color: #ffffff;                 /* Text color */
     padding: 15px 20px;             /* Padding for the button */
     border: none;                   /* Remove border */
-    width: 100%;                    /* Full width button */
+    width: 90%;                    /* Full width button */
     font-size: 16px;                /* Font size */
     font-weight: 700;               /* Bold font */
     cursor: pointer;                /* Pointer cursor on hover */
@@ -148,77 +157,86 @@ header nav ul li a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;  /* Center the content inside the skills section */
-}
 
+    h2 {
+        font-size: 32px;
+        color: #ffffff;
+        margin-bottom: 30px;
+        text-align: center;
+    }
 
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-    gap: 20px; /* Space between skill cards */
-    justify-content: center; /* Center the skill cards horizontally */
-    max-width: 1200px; /* Limit the container width */
-    width: 100%;
-}
+    .skill-text {
+        color: #ffffff !important;
+        font-size: 16px !important;
+        max-width: 1200px !important;
+        margin: 0 auto 40px !important;
+        line-height: 1.6 !important;
+        text-align: center !important;
+        padding: 0 20px !important;
+        box-sizing: border-box !important;
+    }
 
-#skills h2 {
-    font-size: 32px;
-    color: #ffffff;
-    margin-bottom: 30px;
-    text-align: center;
-}
+    .skills-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two equal columns on larger screens */
+        gap: 20px; /* Space between skill cards */
+        justify-content: center;
+        max-width: 1200px; /* Limit the container width */
+        width: 100%;
+    }
 
-.skill-card {
-    background-color: #ffffff;
-    padding: 16px;
-    border-radius: 20px;
-    max-width: 550px;  /* Set max-width to prevent stretching */
-    min-width: 250px;
-    width: 100%;               /* Ensure cards are 100% inside the container */
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for the cards */
-    text-align: left;          /* Align text to the left */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-}
+    .skill-card {
+        background-color: #ffffff;
+        padding: 16px;
+        border-radius: 20px;
+        max-width: 550px;
+        width: 90%;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for the cards */
+        text-align: left;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.skill-card:hover {
-    transform: scale(1.05); /* Slightly enlarge the card on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase the shadow on hover */
-}
+    .skill-card:hover {
+        transform: scale(1.05); /* Slightly enlarge the card on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase the shadow on hover */
+    }
 
-.skill-card h3 {
-    font-size: 24px;
-    color: #222222;
-    margin-bottom: 15px;
-}
+    .skill-card h3 {
+        font-size: 24px;
+        color: #222222;
+        margin-bottom: 15px;
+    }
 
-.skill-card ul {
-    list-style: none;
-    padding: 0;
-}
+    .skill-card ul {
+        list-style: none;
+        padding: 0;
+    }
 
-.skill-card li {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-}
+    .skill-card li {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+    }
 
-.skill-bar {
-    background-color: #e0e0e0;
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 5px;
-    overflow: hidden;
-}
+    .skill-bar {
+        background-color: #e0e0e0;
+        height: 10px;
+        border-radius: 5px;
+        margin-top: 5px;
+        overflow: hidden;
+    }
 
-.progress {
-    background-color: #2E3192;
-    height: 100%;
-    border-radius: 5px;
+    .progress {
+        background-color: #2E3192;
+        height: 100%;
+        border-radius: 5px;
+    }
 }
 
 /* Works Section */
 #works {
-    padding: 50px 0;
+    padding: 32px 0;
     display: flex;
     flex-direction: column;
     align-items: center;  /* Center the content inside the works section */
@@ -242,7 +260,7 @@ header nav ul li a:hover {
 
 .work-item img {
     width: 100%;
-    max-width: 550px;  /* Limit the width to 550px to match skill cards */
+    max-width: auto;  /* Limit the width to 550px to match skill cards */
     border-radius: 10px;
     // transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
@@ -349,7 +367,7 @@ footer nav ul li a {
 
 /* Lightbox styles */
 .lightbox {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 9999;
     padding-top: 60px;
@@ -357,17 +375,20 @@ footer nav ul li a {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
 }
 
+/* Lightbox content (image) */
 .lightbox-content {
-    margin: auto;
-    display: block;
     max-width: 80%;
     max-height: 80%;
+    display: block;
+    margin: auto;
 }
 
+/* Lightbox Close button */
 .close {
     position: absolute;
     top: 30px;
@@ -384,12 +405,44 @@ footer nav ul li a {
     color: #bbbbbb;
 }
 
+/* Lightbox Previous and Next buttons */
+.lightbox-prev, .lightbox-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    padding: 16px;
+    color: #fff;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    transition: 0.3s;
+}
+
+.lightbox-prev:hover, .lightbox-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Previous button on the left */
+.lightbox-prev {
+    left: 10px;
+}
+
+/* Next button on the right */
+.lightbox-next {
+    right: 10px;
+}
+
+
 /* Image styling in works section */
 .work-item img {
     width: 100%;
     cursor: pointer;
     border-radius: 10px;
 }
+
+
+
+
 @media (max-width: 1111px) {
     .intro-image {
         order: -1; /* Bring the contact info above the form */
@@ -399,7 +452,6 @@ footer nav ul li a {
 }
 /* Media Query for Mobile Screens (375px and up) */
 @media (max-width: 768px) {
-    .skills-container,
     .works-container {
         grid-template-columns: 1fr; /* Single-column layout on mobile */
         justify-items: center; /* Center each item horizontally */
@@ -407,10 +459,15 @@ footer nav ul li a {
         // gap: 20px;
     }
     .skills-container {
-        grid-template-columns: 1fr; /* Single-column layout on mobile */
-        gap: 20px; /* Ensure enough space between cards */
-        justify-items: center; /* Center each item horizontally */
+        grid-template-columns: 1fr !important; /* Single-column layout on mobile */
+        gap: 20px !important; /* Space between cards */
+        justify-items: center !important; /* Center each card */
     }
+
+    // .skill-card {
+    //     max-width: 100%; /* Ensure cards take full width on mobile */
+    //     margin: 0 auto 20px; /* Add space around the card for better mobile layout */
+    // }
 
     #intro {
         flex-direction: column; /* Stack text and image vertically */
@@ -429,6 +486,7 @@ footer nav ul li a {
 
     .intro-image img {
         margin: 20px 0; /* Add space around the image */
+        align-items: center;
     }
 
     /* Show hamburger menu and hide the regular nav */
