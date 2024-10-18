@@ -95,7 +95,7 @@ header nav ul li a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 50px 20px;
+  padding: 20px 8px;
 }
 
 .intro-text {
@@ -122,9 +122,8 @@ header nav ul li a:hover {
 .scroll-button {
   background-color: #2E3192; /* Button background color */
   color: #ffffff; /* Text color */
-  padding: 15px 20px; /* Padding for the button */
+  padding: 12px 64px; /* Padding for the button */
   border: none; /* Remove border */
-  width: 90%; /* Full width button */
   font-size: 16px; /* Font size */
   font-weight: 700; /* Bold font */
   cursor: pointer; /* Pointer cursor on hover */
@@ -133,8 +132,9 @@ header nav ul li a:hover {
   display: inline-block; /* Treat as inline-block for anchor */
   text-decoration: none; /* Remove underline for links */
   transition: all 0.3s ease; /* Smooth transition for hover effect */
+  max-width: 100%; /* Ensure the button doesn't exceed the container */
+  box-sizing: border-box; /* Ensure padding is included in width */
   margin-bottom: 8px;
-  max-width: 500px;
 }
 
 /* Hover effect */
@@ -145,9 +145,12 @@ header nav ul li a:hover {
 }
 
 .intro-image img {
+  width: auto;
   max-width: 100%;
+  height: auto;
   border-radius: 0px;
   max-width: 500px;
+  margin-bottom: 0px;
 }
 
 /* Skills Section */
@@ -265,12 +268,15 @@ header nav ul li a:hover {
 
 .contact-form {
   width: 45%; /* Same width as contact info for balance */
+  margin: 0 auto;
+  padding: 0;
 }
 
 .contact-form form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 0;
 }
 
 .contact-form label {
@@ -280,11 +286,12 @@ header nav ul li a:hover {
 }
 
 .contact-form input, .contact-form textarea {
+  width: 100%;
   padding: 10px;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   font-size: 16px;
-  width: 100%; /* Ensure input fields take full width */
+  box-sizing: border-box;
 }
 
 .contact-form button {
@@ -437,6 +444,12 @@ footer nav ul li a {
     grid-template-columns: 1fr; /* Single-column layout on mobile */
     justify-items: center; /* Center each item horizontally */
     text-align: center; /* Center text inside items */
+    padding: 0 24px;
+  }
+  .work-item img {
+    margin-bottom: 20px; /* Add space below each image */
+    padding: 0; /* Ensure no extra padding inside the image itself */
+    width: 100%; /* Ensure the image fills the container */
   }
   .skills-container {
     grid-template-columns: 1fr !important; /* Single-column layout on mobile */
@@ -450,14 +463,16 @@ footer nav ul li a {
   }
   .intro-text, .intro-image {
     max-width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .scroll-button {
     width: 100%; /* Make button full-width on mobile */
   }
   .intro-image img {
-    margin: 20px 0; /* Add space around the image */
-    align-items: center;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin-bottom: 0px;
   }
   /* Show hamburger menu and hide the regular nav */
   .hamburger {
@@ -474,6 +489,20 @@ footer nav ul li a {
   #contact {
     flex-direction: column; /* Stack the form and contact info vertically */
     align-items: center;
+  }
+  .contact-form {
+    width: auto;
+    max-width: 100%;
+    padding: 0 8px;
+  }
+  form {
+    padding: 0 8px;
+  }
+  input, textarea {
+    width: 100%;
+  }
+  button {
+    width: 100%;
   }
   .contact-form, .contact-info {
     width: 100%; /* Make both sections full-width on mobile */
