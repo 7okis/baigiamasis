@@ -484,9 +484,15 @@ footer nav ul li a {
     // }
 
     .lightbox-prev, .lightbox-next {
-        top: 20%; /* Adjust arrow position for better layout in mobile view */
-        transform: none; /* Remove translateY for better positioning */
+        top: 50%; /* Adjust arrow position for better layout in mobile view */
+        transform: translateY(-50%); /* Ensure proper centering */
         font-size: 18px; /* Adjust font size for smaller screens */
+    }
+    .lightbox-prev {
+        left: 8px; /* Bring left arrow closer to the edge */
+    }
+    .lightbox-next {
+        right: 8px; /* Bring right arrow closer to the edge */
     }
 
     #intro {
@@ -546,7 +552,7 @@ footer nav ul li a {
     }
 
     button {
-        width: 100%; // Ensure button takes full width of the form
+        // width: 100%; // Ensure button takes full width of the form
     }
 
     .contact-form, .contact-info {
